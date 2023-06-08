@@ -11,11 +11,12 @@ import { Navigate, useNavigate } from "react-router-dom";
 import axios from '../../axios';
 
 export const AddPost = () => {
-  const isAuth = useSelector(selectIsAuth);
-  const navigate = useNavigate();
-  const [isLoading, setLoading] = React.useState(false);
+  //const navigate = useNavigate();
+  const isAuth = useSelector(selectIsAuth)
+  //const [isLoading, setLoading] = React.useState(false);
   const [text, setText] = React.useState('');
   const [title, setTitle] = React.useState('');
+  const [value, setValue] = React.useState('');
   const [tags, setTags] = React.useState('');
   const [imageUrl, setImageUrl] = React.useState('');
   const inputFileRef = React.useRef(null);
@@ -34,14 +35,14 @@ export const AddPost = () => {
   };
 
   const onClickRemoveImage = async (event) => {
-    setImageUrl('')
+    setImageUrl('');
   };
 
   const onChange = React.useCallback((value) => {
     setText(value);
   }, []);
 
-  const onSubmit = async () => {
+ /* const onSubmit = async () => {
     try {
       setLoading(true);
       const fields = {
@@ -59,7 +60,7 @@ export const AddPost = () => {
       alert('Ошибка при создании статьи');
     }
   };
-
+*/
   const options = React.useMemo(
     () => ({
       spellChecker: false,
@@ -104,9 +105,9 @@ export const AddPost = () => {
         fullWidth
       />
       <TextField classes={{ root: styles.tags }} variant="standard" placeholder="Тэги" value={tags} onChange={e => setTags(e.target.value)}fullWidth />
-      <SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options} />
+      <SimpleMDE className={styles.editor} value={setText} onChange={onChange} options={options} />
       <div className={styles.buttons}>
-        <Button onClick={onSubmit} size="large" variant="contained">
+        <Button size="large" variant="contained">
           Опубликовать
         </Button>
         <a href="/">

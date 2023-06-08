@@ -7,7 +7,7 @@ export const fetchAuth = createAsyncThunk('auth/fetchAuth', async (params) => {
 });
 
 export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
-    console.log(window.localStorage.getItem('token'));
+    //console.log(window.localStorage.getItem('token'));
     const { data } = await axios.get('/auth/me');
     return data;
 });
